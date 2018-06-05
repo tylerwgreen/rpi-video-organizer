@@ -1,0 +1,25 @@
+{
+	"logger": {
+		"console": false,
+		"_console": "debug",
+		"_console": "error",
+		"fileDir": "/var/log",
+		"fileExt": ".log",
+		"file": {
+			"app": "debug"
+		},
+		"_file": {
+			"app": "error",
+			"debug": "debug",
+			"info": "info",
+			"warn": "warn",
+			"error": "error"
+		}
+	},
+	"videoManager": {
+		"videoDir": "/home/pi/projects/rpi-video-recorder-player/assets/video/recordings/converted/old"
+	},
+	"cli": {
+		
+	}
+}

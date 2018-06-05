@@ -1,31 +1,29 @@
-var readline = require('readline');
- 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-var recursiveAsyncReadLine = function () {
-	rl.question("Please Choose an option:\n"
-		+ "1) Option 1\n"
-		+ "2) Option 2\n"
-		+ "3) Exit\n"
-		, function (line) {
- 
-			switch (line){
-				case "1":
-					console.log("this is option 1");
-					break;
-				case "2":
-					console.log("this is option 2");
-					break;
-				case "3":
-					return rl.close();
-					break;
-				default:
-					console.log("No such option. Please enter another: ");
-			}
-	recursiveAsyncReadLine(); //Calling this function again to ask new question
-	});
-};
- recursiveAsyncReadLine();
+var app = {
+	init: function(){
+		console.log('app.init()');
+		// load modules
+		this.config = require('config');
+		var logger = require(__dirname + '/modules/logger');
+		var videoManager = require(__dirname + '/modules/video-manager');
+		var cli = require(__dirname + '/modules/cli');
+		// config modules
+		// console.log('config: ', this.config);
+		this.logger = logger.init({
+			config: this.config.get('logger'),
+			logDir: __dirname
+		});
+		// this.logger.debug('test');
+		this.videoManager = videoManager.init({
+			config: this.config.get('videoManager'),
+		});
+		this.cli = cli.init({
+			config: this.config.get('cli'),
+		});
+		this.run();
+	},
+	run: function(){
+		console.log('app.run()');
+		this.cli.menus.main();
+	}
+}
+app.init();

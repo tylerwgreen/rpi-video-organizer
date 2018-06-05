@@ -11,6 +11,8 @@
 		"url": "http://freshgreenmedia.com/"
 	},
 	"dependencies": {
-		"readline": "~1.3.0"
+		"readline": "~1.3.0",
+		"winston": "^2.4.2",
+		"config": "^1.30.0"
 	}
 }
