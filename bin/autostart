@@ -1,0 +1,29 @@
+#!/bin/bash
+
+APP_DIR=$(dirname "$0")/..
+LOG=/logs/startup.log
+NOW=$(date +"%y-%m-%d %H:%M:%S")
+LOGFILE=$APP_DIR$LOG
+
+# log
+echo "$NOW|executing: startup" | tee -a $LOGFILE
+
+# open terminal and run command for app startup
+# lxterminal -e $STARTUP
+
+echo "#bash - startup killing node"
+killall node
+echo "#bash - startup killing chrome"
+killall chromium-browser
+echo "#bash - startup killing mpg123"
+killall mpg123
+echo "#bash - startup killing omxplayer"
+killall omxplayer
+killall omxplayer.bin
+echo "#bash - startup starting node"
+node $APP_DIR/app.js
+# add & to the end of your command to tell bash to fork the process off in the background
+# node $APP_DIR/app.js &
+#echo "#bash - startup starting chrome"
+#echo "#bash - startup please wait..."
+#chromium-browser -incognito --kiosk --touch-events=enabled 127.0.0.1:5000

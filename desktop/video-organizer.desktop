@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Video Organizer
+Comment=Video Organizer
+Icon=/home/pi/projects/rpi-video-organizer/assets/icon/video-organizer-icon.png
+Exec=/home/pi/projects/rpi-video-organizer/bin/autostart
+Type=Application
+Encoding=UTF-8
+Terminal=true
+Categories=None;

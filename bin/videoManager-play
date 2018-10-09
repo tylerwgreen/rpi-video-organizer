@@ -1,0 +1,36 @@
+#!/bin/bash
+echo ""
+echo "#bash - videoManager play start"
+#### INPUT FILE
+FILE=$1
+#### DISPLAY
+# DISPLAY: 5 = HDMI, 4 = LCD
+DISPLAY=5
+# DISPLAY=4
+#### AUDIO
+AUDIO_OUTPUT=local
+# AUDIO_OUTPUT=hdmi
+#### SIZE AND POSITION
+VIDEO_WIDTH=660
+VIDEO_HEIGHT=366
+#### TRANSPARENCY
+# 230 = 90%, 255 = 100%
+# ALPHA=230
+ALPHA=255
+#### PLAYBACK SPEED
+# 25 = Normal playback, 50 = 2x playback, 75 = 3x playback
+# FRAMES_PER_SECOND=75 # THIS DID NOT APPEAR TO ACTUALLY WORK :(
+FRAMES_PER_SECOND=25
+#### KILL PLAYBACK OF OMXPLAYER
+echo "#bash - videoManager play killing playback"
+killall omxplayer
+killall omxplayer.bin
+killall -9 omxplayer
+killall -9 omxplayer.bin
+killall -s SIGKILL omxplayer
+killall -s SIGKILL omxplayer.bin
+echo "#bash - videoManager playing $FILE"
+# omxplayer -o $AUDIO_OUTPUT --display=$DISPLAY --loop -local --no-osd $1
+omxplayer -o $AUDIO_OUTPUT --display=$DISPLAY --win "0, 0, $VIDEO_WIDTH, $VIDEO_HEIGHT" --fps $FRAMES_PER_SECOND --alpha $ALPHA $FILE
+echo "#bash - videoManager play end"
+

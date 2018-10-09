@@ -1,0 +1,11 @@
+#!/bin/bash
+echo ""
+echo "#bash - videoManager stop start"
+echo "#bash - videoManager stop killing playback"
+killall omxplayer
+killall omxplayer.bin
+killall -9 omxplayer
+killall -9 omxplayer.bin
+killall -s SIGKILL omxplayer
+killall -s SIGKILL omxplayer.bin
+echo "#bash - videoManager stop end"
