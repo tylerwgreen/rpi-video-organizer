@@ -21,6 +21,7 @@ echo "#bash - startup killing omxplayer"
 killall omxplayer
 killall omxplayer.bin
 echo "#bash - startup starting node"
+echo ""
 node $APP_DIR/app.js
 # add & to the end of your command to tell bash to fork the process off in the background
 # node $APP_DIR/app.js &

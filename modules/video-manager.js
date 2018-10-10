@@ -11,14 +11,18 @@ var videoManager = {
 		this.files.init(params.initCallback);
 	},
 	player: {
+		playerProcess: null,
+		stopProcess: null,
 		play: function(){
 			var file = videoManager.files.getFile();
-			child = execFile(
+			if(null !== videoManager.player.playerProcess)
+				videoManager.player.playerProcess.kill();
+			videoManager.player.playerProcess = execFile(
 				videoManager.params.binDir + 'videoManager-play',
 				[videoManager.params.videosDirs.srcDir + file],
 				function(error, stdout, stderr){
 					if(error){
-						throw new Error(error);
+						// throw new Error(error);
 					}else{
 						// file finished playing without any action
 						videoManager.player.play();
@@ -27,12 +31,17 @@ var videoManager = {
 			);
 		},
 		stop: function(){
-			child = execFile(
+			if(null !== videoManager.player.playerProcess)
+				videoManager.player.playerProcess.kill();
+			if(null !== videoManager.player.stopProcess)
+				videoManager.player.stopProcess.kill();
+			videoManager.player.stopProcess = execFile(
 				videoManager.params.binDir + 'videoManager-stop',
 				[],
 				function(error, stdout, stderr){
-					if(error)
-						throw new Error(error);
+					if(error){
+						// throw new Error(error);
+					}
 				}
 			);
 		}

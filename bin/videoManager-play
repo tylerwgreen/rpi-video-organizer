@@ -17,6 +17,10 @@ VIDEO_HEIGHT=366
 # 230 = 90%, 255 = 100%
 # ALPHA=230
 ALPHA=255
+#### START TIME
+# videos are 27 seconds long (max start position is 24 seconds)
+START_POS="00:00:00"
+# START_POS="00:00:24"
 #### PLAYBACK SPEED
 # 25 = Normal playback, 50 = 2x playback, 75 = 3x playback
 # FRAMES_PER_SECOND=75 # THIS DID NOT APPEAR TO ACTUALLY WORK :(
@@ -25,12 +29,8 @@ FRAMES_PER_SECOND=25
 echo "#bash - videoManager play killing playback"
 killall omxplayer
 killall omxplayer.bin
-killall -9 omxplayer
-killall -9 omxplayer.bin
-killall -s SIGKILL omxplayer
-killall -s SIGKILL omxplayer.bin
 echo "#bash - videoManager playing $FILE"
 # omxplayer -o $AUDIO_OUTPUT --display=$DISPLAY --loop -local --no-osd $1
-omxplayer -o $AUDIO_OUTPUT --display=$DISPLAY --win "0, 0, $VIDEO_WIDTH, $VIDEO_HEIGHT" --fps $FRAMES_PER_SECOND --alpha $ALPHA $FILE
+omxplayer -o $AUDIO_OUTPUT --display=$DISPLAY --win "0, 0, $VIDEO_WIDTH, $VIDEO_HEIGHT" --fps $FRAMES_PER_SECOND --alpha $ALPHA --pos $START_POS $FILE
 echo "#bash - videoManager play end"
 
