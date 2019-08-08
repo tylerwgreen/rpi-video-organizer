@@ -20,9 +20,11 @@ var app = {
 			callbacks: {
 				keep: videoManager.files.keepFile,
 				reject: videoManager.files.rejectFile,
-				exit: videoManager.player.stop
+				skip: videoManager.files.skipFiles,
+				// exit: videoManager.player.stop
 			},
 			config: this.config.get('cli'),
+			numVideosToSkip: this.config.get('videoManager').numVideosToSkip,
 		});
 	},
 	run: function(){

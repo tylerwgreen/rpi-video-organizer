@@ -21,7 +21,8 @@
 		"videosDirs": {
 			"srcDir": "/home/pi/projects/rpi-video-recorder-player/assets/video/recordings/converted/old/",
 			"rejectedDir": "/home/pi/projects/rpi-video-recorder-player/assets/video/recordings/converted/rejected/"
-		}
+		},
+		"numVideosToSkip": 5
 	},
 	"cli": {
 		

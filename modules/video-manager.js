@@ -3,8 +3,9 @@ var fs			= require('fs');
 
 var videoManager = {
 	params: {
-		binDir:		null,
-		videosDirs:	null,
+		binDir:				null,
+		videosDirs:			null,
+		numVideosToSkip:	null,
 	},
 	init: function(params){
 		this.params = Object.assign(this.params, params.config);
@@ -78,10 +79,16 @@ var videoManager = {
 			videoManager.files.moveFileToRejectedDir();
 			videoManager.files.removeFileFromArrayAndPlayNext();
 		},
+		skipFiles: function(){
+			videoManager.files.removeFilesFromArrayAndPlayNext(videoManager.params.numVideosToSkip);
+		},
 		removeFileFromArrayAndPlayNext: function(){
+			videoManager.files.removeFilesFromArrayAndPlayNext(1);
+		},
+		removeFilesFromArrayAndPlayNext: function(numFilesToRemove){
 			videoManager.player.stop();
 			videoManager.files.file = null;
-			videoManager.files.files.splice(0, 1);
+			videoManager.files.files.splice(0, numFilesToRemove);
 			videoManager.player.play();
 		},
 		moveFileToRejectedDir: function(){
